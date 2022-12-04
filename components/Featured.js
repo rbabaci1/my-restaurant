@@ -11,9 +11,12 @@ function Featured() {
 
   const [imgIndex, setImgIndex] = useState(0);
 
-  const handleClick = val => {
-    if ((imgIndex === 0 && val < 0) || (imgIndex === 2 && val > 0)) return;
-    setImgIndex(imgIndex + val);
+  const handleClick = direction => {
+    if (direction === 'forward') {
+      setImgIndex(imgIndex !== 2 ? imgIndex + 1 : 0);
+    } else if (direction === 'backward') {
+      setImgIndex(imgIndex !== 0 ? imgIndex - 1 : 2);
+    }
   };
 
   return (
@@ -21,19 +24,27 @@ function Featured() {
       <div className={styles.arrowContainer} style={{ left: 0 }}>
         <Image
           src='/images/arrowl.png'
-          alt='back arrow'
+          alt='backward arrow'
           layout='fill'
-          onClick={() => handleClick(-1)}
+          objectFit='contain'
+          onClick={() => handleClick('backward')}
         />
       </div>
 
-      <div className={styles.wrapper}>
-        <Image
-          src={images[imgIndex]}
-          alt={`featured pizza ${imgIndex}`}
-          layout='fill'
-          objectFit='contain'
-        />
+      <div
+        className={styles.wrapper}
+        style={{ transform: `translateX(${-100 * imgIndex}vw)` }}
+      >
+        {images.map((img, i) => (
+          <div className={styles.imgContainer} key={i}>
+            <Image
+              src={img}
+              alt={`featured pizza ${i}`}
+              layout='fill'
+              objectFit='contain'
+            />
+          </div>
+        ))}
       </div>
 
       <div className={styles.arrowContainer} style={{ right: 0 }}>
@@ -41,7 +52,8 @@ function Featured() {
           src='/images/arrowr.png'
           alt='forward arrow'
           layout='fill'
-          onClick={() => handleClick(+1)}
+          objectFit='contain'
+          onClick={() => handleClick('forward')}
         />
       </div>
     </div>
