@@ -10,7 +10,9 @@ function Featured() {
 
   return (
     <div className={styles.container}>
-      <Image src='/images/arrowl.png' alt='' layout='fill' />
+      <div className={styles.arrowContainer} style={{ left: 0 }}>
+        <Image src='/images/arrowl.png' alt='' layout='fill' />
+      </div>
 
       <div className={styles.wrapper}>
         {images.map((img, i) => (
@@ -20,7 +22,9 @@ function Featured() {
         ))}
       </div>
 
-      <Image src='/images/arrowr.png' alt='' layout='fill' />
+      <div className={styles.arrowContainer} style={{ right: 0 }}>
+        <Image src='/images/arrowr.png' alt='' layout='fill' />
+      </div>
     </div>
   );
 }
