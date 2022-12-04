@@ -1,6 +1,7 @@
 .container {
   height: calc(100vh - 100px);
   background-color: #d1411e;
+  overflow: hidden;
 }
 
 .arrowContainer {
@@ -10,5 +11,22 @@
   top: 0;
   bottom: 0;
   margin: auto;
-  z-index: 1;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.arrowContainer:hover {
+  background-color: #e15633;
+}
+
+.wrapper {
+  display: flex;
+  width: 300vw;
+  height: 100%;
+}
+
+.imgContainer {
+  position: relative;
+  width: 100vw;
+  height: 100%;
 }
