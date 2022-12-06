@@ -29,9 +29,6 @@
   border-bottom: 1px solid #d1411e;
 }
 
-.choose {
-}
-
 .sizes {
   display: flex;
   justify-content: space-between;
@@ -64,4 +61,38 @@
   padding: 0 5px;
   font-size: 13px;
   border-radius: 10px;
+}
+
+.ingredients {
+  display: flex;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  font-style: 14px;
+  font-weight: 500;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.quantity {
+  width: 50px;
+  height: 30px;
+}
+
+.button {
+  height: 30px;
+  margin-left: 10px;
+  background-color: #d1411e;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
 }

@@ -58,6 +58,55 @@ function Product() {
             <span className={styles.text}>Large</span>
           </div>
         </div>
+
+        <h3>Choose additional ingredients</h3>
+
+        <div className={styles.ingredients}>
+          <div className={styles.option}>
+            <input
+              className={styles.checkbox}
+              type='checkbox'
+              name='double'
+              id='double'
+            />
+            <label htmlFor='double'>Double ingredients</label>
+          </div>
+
+          <div className={styles.option}>
+            <input
+              className={styles.checkbox}
+              type='checkbox'
+              name='cheese'
+              id='cheese'
+            />
+            <label htmlFor='cheese'>Extra cheese</label>
+          </div>
+
+          <div className={styles.option}>
+            <input
+              className={styles.checkbox}
+              type='checkbox'
+              name='spicy'
+              id='spicy'
+            />
+            <label htmlFor='spicy'>Spicy sauce</label>
+          </div>
+
+          <div className={styles.option}>
+            <input
+              className={styles.checkbox}
+              type='checkbox'
+              name='garlic'
+              id='garlic'
+            />
+            <label htmlFor='garlic'>Garlic sauce</label>
+          </div>
+        </div>
+
+        <div className={styles.add}>
+          <input type='number' defaultValue={1} className={styles.quantity} />
+          <button className={styles.button}>Add to cart</button>
+        </div>
       </div>
     </div>
   );
