@@ -66,7 +66,6 @@
 .ingredients {
   display: flex;
   margin-bottom: 30px;
-  align-items: center;
 }
 
 .option {
@@ -95,4 +94,40 @@
   cursor: pointer;
   border: none;
   font-weight: 500;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    height: auto;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .imgContainer {
+    width: 70vw;
+    height: 70vw;
+  }
+  .title {
+    margin: 5px;
+  }
+  .sizes {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .ingredients {
+    flex-direction: column;
+  }
+  .option {
+    margin: 10px;
+    font-size: 18px;
+  }
+  .checkbox {
+    width: 25px;
+    height: 25px;
+  }
+  .quantity,
+  .button {
+    height: 50px;
+    padding: 10px 20px;
+  }
 }
