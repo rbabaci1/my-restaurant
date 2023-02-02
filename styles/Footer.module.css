@@ -11,9 +11,9 @@
 }
 
 .item:last-child {
+  justify-content: space-between;
   flex: 2;
   padding: 50px;
-  justify-content: space-between;
 }
 
 .card {

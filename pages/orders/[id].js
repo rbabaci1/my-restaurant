@@ -85,7 +85,9 @@ function Order() {
               width={30}
               height={30}
             />
+
             <span>On the way</span>
+
             <div className={styles.checkedIcon}>
               <Image
                 className={styles.checkedIcon}
