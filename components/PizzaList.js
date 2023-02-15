@@ -1,7 +1,7 @@
 import styles from '../styles/PizzaList.module.css';
 import PizzaCard from './PizzaCard';
 
-function PizzaList() {
+function PizzaList({ pizzaList }) {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>The best pizza in town!</h1>
@@ -13,14 +13,9 @@ function PizzaList() {
       </p>
 
       <div className={styles.wrapper}>
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
+        {pizzaList.map(pizza => (
+          <PizzaCard pizza={pizza} key={pizza.id} />
+        ))}
       </div>
     </div>
   );

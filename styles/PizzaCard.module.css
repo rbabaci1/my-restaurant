@@ -1,16 +1,18 @@
 .container {
   position: relative;
   width: 22%;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px 40px;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
 }
 
 .container:hover {
+  border-bottom: 2px solid #d1411e;
+  background: rgb(250, 255, 254);
 }
 
 .title {
