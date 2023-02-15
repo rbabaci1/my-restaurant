@@ -10,8 +10,8 @@ function PizzaCard({ pizza }) {
           src={pizza.img}
           alt='pizza'
           layout='responsive'
-          width={500}
-          height={500}
+          width={200}
+          height={200}
         />
       </Link>
       <h1 className={styles.title}>{pizza.title}</h1>
