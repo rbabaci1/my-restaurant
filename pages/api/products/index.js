@@ -7,22 +7,19 @@ export default async function handler(req, res) {
   // connect db
   dbConnect(Product);
 
-  switch (method) {
-    case 'GET':
-      try {
-        const products = await Product.find();
-        res.status(200).json(products);
-      } catch (error) {
-        res.status(500).json(error);
-      }
-      break;
-    case 'POST':
-      try {
-        const product = await Product.create(req.body);
-        res.status(201).json(product);
-      } catch (error) {
-        res.status(500).json(error);
-      }
-      break;
+  if (method === 'GET') {
+    try {
+      const products = await Product.find();
+      res.status(200).json(products);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  } else if (method === 'POST') {
+    try {
+      const product = await Product.create(req.body);
+      res.status(201).json(product);
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
 }
