@@ -48,11 +48,13 @@
   margin-right: 10px;
 }
 .button {
-  height: 300px;
+  border: none;
   color: #d1411e;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
 }
 
 @media screen and (max-width: 480px) {
@@ -104,4 +106,25 @@
   .wrapper {
     width: 100%;
   }
+}
+
+.paymentMethods {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  height: 90px;
+  width: 200px;
+}
+.cashOnDelivery {
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  color: teal;
+  font-weight: bold;
+  border-radius: 4px;
+}
+.cashOnDelivery:hover {
+  background-color: #f4f3f3;
 }
