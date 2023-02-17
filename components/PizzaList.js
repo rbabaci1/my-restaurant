@@ -14,7 +14,7 @@ function PizzaList({ pizzaList }) {
 
       <div className={styles.wrapper}>
         {pizzaList.map(pizza => (
-          <PizzaCard pizza={pizza} key={pizza.id} />
+          <PizzaCard pizza={pizza} key={pizza._id} />
         ))}
       </div>
     </div>

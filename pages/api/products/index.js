@@ -4,6 +4,8 @@ import Product from '../../../models/Product';
 export default async function handler(req, res) {
   const { method } = req;
 
+  console.log({ method });
+
   // connect db
   dbConnect(Product);
 
