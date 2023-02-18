@@ -1,5 +1,5 @@
 import dbConnect from '../../../lib/mongo';
-import Order from '../../../models/Orders';
+import Order from '../../../models/Order';
 
 export default async function handler(req, res) {
   const {
@@ -7,7 +7,15 @@ export default async function handler(req, res) {
     query: { id },
   } = req;
 
+  await dbConnect();
+
   if (method === 'GET') {
+    try {
+      const order = await Order.findById(id);
+      res.status(200).json(order);
+    } catch (error) {
+      res.status(500).json(error);
+    }
   } else if (method === 'PUT') {
   } else if (method === 'DELETE') {
   }
