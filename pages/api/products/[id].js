@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   } = req;
 
   // connect db
-  dbConnect(Product);
+  dbConnect();
 
   if (method === 'GET') {
     try {

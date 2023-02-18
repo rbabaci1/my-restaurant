@@ -8,14 +8,30 @@ import {
   PayPalButtons,
   usePayPalScriptReducer,
 } from '@paypal/react-paypal-js';
+import { useRouter } from 'next/router';
+import { reset } from '../redux/cartSlice';
+import axios from 'axios';
 
 function Cart() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const cart = useSelector(state => state.cart);
   const [open, setOpen] = useState(false);
-  const amount = '2';
+  const amount = cart.total;
   const currency = 'USD';
   const style = { layout: 'vertical' };
+
+  const createOrder = async data => {
+    try {
+      const res = await axios.post('http://localhost:3000/api/orders', data);
+      if (res.status === 201) {
+        dispatch(reset());
+        router.push(`/orders/${res.data._id}`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // Custom component to wrap the PayPalButtons and handle currency changes
   const ButtonWrapper = ({ currency, showSpinner }) => {
@@ -61,7 +77,13 @@ function Cart() {
           onApprove={function (data, actions) {
             return actions.order.capture().then(function (details) {
               // Your code here after capture the order
-              console.log(details);
+              const shipping = details.purchase_units[0].shipping;
+              createOrder({
+                customer: shipping.name.full_name,
+                address: shipping.address.address_line_1,
+                total: cart.total,
+                method: 1,
+              });
             });
           }}
         />
@@ -104,14 +126,14 @@ function Cart() {
 
                 <td>
                   <span className={styles.extras}>
-                    {product.extras.map(extra => {
-                      <span key={product._id}>{extra.text}, </span>;
-                    })}
+                    {product.extras.map(extra => (
+                      <span key={product._id}>{extra.text}, </span>
+                    ))}
                   </span>
                 </td>
 
                 <td>
-                  <span className={styles.price}>{product.price}</span>
+                  <span className={styles.price}>${product.price}</span>
                 </td>
 
                 <td>
@@ -120,7 +142,7 @@ function Cart() {
 
                 <td>
                   <span className={styles.total}>
-                    {product.price * product.quantity}
+                    ${product.price * product.quantity}
                   </span>
                 </td>
               </tr>
@@ -133,14 +155,13 @@ function Cart() {
         <div className={styles.wrapper}>
           <h2 className={styles.title}>CART TOTAL</h2>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Subtotal:</b>
-            {cart.total}
+            <b className={styles.totalTextTitle}>Subtotal:</b>${cart.total}
           </div>
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Discount:</b>$0.00
           </div>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Total:</b>$79.60
+            <b className={styles.totalTextTitle}>Total:</b>${cart.total}
           </div>
           <div className={styles.paymentMethods}>
             <button className={styles.cashOnDelivery}>CASH ON DELIVERY</button>
