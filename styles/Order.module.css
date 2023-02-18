@@ -1,10 +1,14 @@
 .container {
   padding: 50px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .left {
   flex: 2;
+  margin-bottom: 20px;
 }
 
 .table {
@@ -67,6 +71,7 @@
   flex-direction: column;
   justify-content: space-between;
   color: white;
+  border-radius: 5px;
 }
 
 .totalTextTitle {
@@ -77,6 +82,7 @@
   background-color: white;
   height: 30px;
   color: teal;
+  width: 100%;
   font-weight: bold;
   margin-top: 20px;
   cursor: not-allowed;

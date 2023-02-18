@@ -7,21 +7,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(109, 109, 109);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .wrapper {
   width: 500px;
   background-color: #fff;
-  border-radius: 20px;
-  padding: 40px;
+  border-radius: 5px;
+  padding: 30px 40px 40px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 9;
 }
 .title {
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .item {
