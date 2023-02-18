@@ -165,27 +165,30 @@ function Cart() {
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Total:</b>${cart.total}
           </div>
-          <div className={styles.paymentMethods}>
-            <button
-              className={styles.cashOnDelivery}
-              onClick={() => setCash(true)}
-            >
-              CASH ON DELIVERY
-            </button>
+
+          <div className={styles.buttons}>
             {open ? (
-              <PayPalScriptProvider
-                options={{
-                  'client-id':
-                    'AWbYwdMpzA-tB1vAR6Fmy2nBuTqfBwhftaQATsB4AAVLq-vLjPudwOSVnh8Nx4EGJHRx-KQp1qwYhdoX',
-                  components: 'buttons',
-                  currency: 'USD',
-                  'disable-funding': 'credit,card,p24,venmo',
-                }}
-              >
-                <ButtonWrapper currency={currency} showSpinner={false} />
-              </PayPalScriptProvider>
+              <div className={styles.paymentMethods}>
+                <button
+                  className={styles.payButton}
+                  onClick={() => setCash(true)}
+                >
+                  CASH ON DELIVERY
+                </button>
+                <PayPalScriptProvider
+                  options={{
+                    'client-id':
+                      'AWbYwdMpzA-tB1vAR6Fmy2nBuTqfBwhftaQATsB4AAVLq-vLjPudwOSVnh8Nx4EGJHRx-KQp1qwYhdoX',
+                    components: 'buttons',
+                    currency: 'USD',
+                    'disable-funding': 'credit,card,p24',
+                  }}
+                >
+                  <ButtonWrapper currency={currency} showSpinner={false} />
+                </PayPalScriptProvider>
+              </div>
             ) : (
-              <button className={styles.button} onClick={() => setOpen(true)}>
+              <button onClick={() => setOpen(true)} className={styles.button}>
                 CHECKOUT NOW!
               </button>
             )}
