@@ -6,6 +6,7 @@ import styles from '../../styles/Admin.module.css';
 const Index = ({ products, orders }) => {
   const [pizzaList, setPizzaList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
+  const status = ['preparing', 'on the way', 'delivered'];
 
   const handleDelete = async id => {
     try {
@@ -17,6 +18,19 @@ const Index = ({ products, orders }) => {
       console.log(error);
     }
   };
+
+  const handleStatus = async ({ status: currStatus, _id }) => {
+    try {
+      const res = await axios.put(`http://localhost:3000/api/orders/${_id}`, {
+        status: currStatus + 1,
+      });
+
+      setOrderList([res.data, ...orderList.filter(order => order._id !== _id)]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.item}>
@@ -81,18 +95,24 @@ const Index = ({ products, orders }) => {
             </tr>
           </tbody>
 
-          <tbody>
-            <tr className={styles.trTitle}>
-              <td>{'125739293345533'.slice(0, 5)}...</td>
-              <td>John Doe</td>
-              <td>$50</td>
-              <td>paid</td>
-              <td>preparing</td>
-              <td>
-                <button>Next Stage</button>
-              </td>
-            </tr>
-          </tbody>
+          {orderList.map(order => (
+            <tbody key={order._id}>
+              <tr className={styles.trTitle}>
+                <td>{order._id.slice(0, 5)}...</td>
+                <td>{order.customer}</td>
+                <td>${order.total}</td>
+                <td>
+                  {order.method === 0 ? <span>cash</span> : <span>paid</span>}
+                </td>
+                <td>{status[order.status]}</td>
+                <td>
+                  <button onClick={() => handleStatus(order)}>
+                    Next Stage
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
         </table>
       </div>
     </div>

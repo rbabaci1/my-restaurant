@@ -17,6 +17,11 @@ export default async function handler(req, res) {
       res.status(500).json(error);
     }
   } else if (method === 'PUT') {
+    const order = await Order.findByIdAndUpdate(id, req.body, {
+      // to return the new updated order
+      new: true,
+    });
+    res.status(200).json(order);
   } else if (method === 'DELETE') {
   }
 }

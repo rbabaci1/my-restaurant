@@ -19,8 +19,11 @@ export default async function handler(req, res) {
     }
   } else if (method === 'PUT') {
     try {
-      const product = await Product.create(req.body);
-      res.status(201).json(product);
+      const product = await Product.findByIdAndUpdate(id, req.body, {
+        // to return the new updated order
+        new: true,
+      });
+      res.status(200).json(product);
     } catch (error) {
       res.status(500).json(error);
     }
