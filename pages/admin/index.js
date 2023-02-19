@@ -21,11 +21,18 @@ const Index = ({ products, orders }) => {
 
   const handleStatus = async ({ status: currStatus, _id }) => {
     try {
-      const res = await axios.put(`http://localhost:3000/api/orders/${_id}`, {
+      await axios.put(`http://localhost:3000/api/orders/${_id}`, {
         status: currStatus + 1,
       });
 
-      setOrderList([res.data, ...orderList.filter(order => order._id !== _id)]);
+      setOrderList(
+        orderList.map(order => {
+          if (order._id === _id) {
+            order.status += 1;
+          }
+          return order;
+        })
+      );
     } catch (error) {
       console.log(error);
     }
