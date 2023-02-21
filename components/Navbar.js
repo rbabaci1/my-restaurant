@@ -37,7 +37,7 @@ function Navbar() {
           </Link>
 
           <li className={styles.listItem}>Events</li>
-          <li className={styles.listItem}>Blog</li>
+
           <li className={styles.listItem}>Contact</li>
         </ul>
       </div>
