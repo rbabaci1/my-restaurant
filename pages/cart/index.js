@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../styles/Cart.module.css';
+import styles from '../../styles/Cart.module.css';
 
 import { useEffect, useState } from 'react';
 import {
@@ -9,9 +9,9 @@ import {
   usePayPalScriptReducer,
 } from '@paypal/react-paypal-js';
 import { useRouter } from 'next/router';
-import { reset } from '../redux/cartSlice';
+import { reset } from '../../redux/cartSlice';
 import axios from 'axios';
-import OrderDetails from '../components/OrderDetails';
+import OrderDetails from '../../components/OrderDetails';
 
 function Cart() {
   const dispatch = useDispatch();
