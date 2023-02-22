@@ -2,6 +2,8 @@ import dbConnect from '../../../lib/mongo';
 import Product from '../../../models/Product';
 
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
+
   const {
     method,
     query: { id },
@@ -20,7 +22,9 @@ export default async function handler(req, res) {
     } catch (error) {
       res.status(500).json(error);
     }
-  } else if (method === 'PUT') {
+  }
+
+  if (method === 'PUT') {
     if (!token || token !== process.env.TOKEN) {
       return res.status(401).json('Not Authenticated!');
     }
@@ -34,7 +38,9 @@ export default async function handler(req, res) {
     } catch (error) {
       res.status(500).json(error);
     }
-  } else if (method === 'DELETE') {
+  }
+
+  if (method === 'DELETE') {
     if (!token || token !== process.env.TOKEN) {
       return res.status(401).json('Not Authenticated!');
     }

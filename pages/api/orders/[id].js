@@ -2,6 +2,7 @@ import dbConnect from '../../../lib/mongo';
 import Order from '../../../models/Order';
 
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
   const {
     method,
     query: { id },
@@ -16,7 +17,9 @@ export default async function handler(req, res) {
     } catch (error) {
       res.status(500).json(error);
     }
-  } else if (method === 'PUT') {
+  }
+
+  if (method === 'PUT') {
     const order = await Order.findByIdAndUpdate(id, req.body, {
       // to return the new updated order
       new: true,
