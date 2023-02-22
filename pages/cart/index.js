@@ -25,7 +25,10 @@ function Cart() {
 
   const createOrder = async data => {
     try {
-      const res = await axios.post(`${process.env.API}/api/orders`, data);
+      const res = await axios.post(
+        'https://my-restaurant-two.vercel.app/api/orders',
+        data
+      );
       if (res.status === 201) {
         dispatch(reset());
         router.push(`/orders/${res.data._id}`);
