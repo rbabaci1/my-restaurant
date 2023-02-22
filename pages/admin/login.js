@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      await axios.post('https://my-restaurant-two.vercel.app/api/login', {
+      await axios.post(`${process.env.API}/api/login`, {
         username,
         password,
       });
