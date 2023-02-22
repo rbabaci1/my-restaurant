@@ -138,8 +138,12 @@ export const getServerSideProps = async ctx => {
     };
   }
 
-  const products = await axios.get('http://localhost:3000/api/products');
-  const orders = await axios.get('http://localhost:3000/api/orders');
+  const products = await axios.get(
+    'https://my-restaurant-rosy.vercel.app/api/products'
+  );
+  const orders = await axios.get(
+    'https://my-restaurant-rosy.vercel.app/api/orders'
+  );
 
   return {
     props: {
